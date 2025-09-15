@@ -45,7 +45,7 @@ To capture a snapshot of the current database, create a dump:
 
 ```bash
 make dump
-# Commit db/init/99_dump.sql so others get your snapshot on first run
+# Commit db/init/99_dump.sql if you want others to get your snapshot on first run
 ```
 
 ## Common commands
