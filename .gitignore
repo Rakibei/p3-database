@@ -1,0 +1,9 @@
+# Local overrides
+.env
+# Editor cruft
+.idea/
+.vscode/
+.DS_Store
+# Node/Python/etc examples (optional)
+node_modules/
+__pycache__/
