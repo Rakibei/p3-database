@@ -50,15 +50,32 @@ make dump
 
 ## Common commands
 
-```bash
-# Start/stop
-make up
-make down
+### 🔼 `make up`
+- **What it does:** Runs `docker compose up -d`.
+- **Effect:** Starts your PostgreSQL and Adminer containers in the background (“detached” mode).
+- **When to use:** Whenever you want to bring the database online for local development.
 
-# Logs & shell
-make logs
-make shell
+### 🔽 `make down`
+- **What it does:** Runs `docker compose down`.
+- **Effect:** Stops and removes the containers, but **keeps your database data** because the volume is not removed.
+- **When to use:** When you want to stop everything without deleting the database contents.
 
-# psql prompt
-make psql
-```
+### 📜 `make logs`
+- **What it does:** Runs `docker compose logs -f db`.
+- **Effect:** Streams logs from the `db` container (Postgres).
+- **When to use:** If something goes wrong (e.g., database won’t start, schema fails to load), check here for errors.
+
+### 💻 `make shell`
+- **What it does:** Runs `docker compose exec db bash`.
+- **Effect:** Opens a bash shell inside the Postgres container.
+- **When to use:** Advanced debugging — lets you poke around inside the container itself.
+
+### 🐘 `make psql`
+- **What it does:** Opens the `psql` command-line client inside the `db` container.
+- **Effect:** Lets you run SQL commands interactively against your database.
+- **When to use:** Quick queries, checking schema, testing SQL without needing a GUI tool.
+
+### 📥 `make restore FILE=...`
+- **What it does:** Pipes the contents of a SQL file into `psql` inside the container.
+- **Effect:** Restores a database dump into your running DB.
+- **When to use:** If someone else shared a dump file with you, or you want to roll back to a known snapshot.
