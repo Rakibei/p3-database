@@ -33,7 +33,7 @@ A quick local database for the 3rd semester project
 
 ## Seeding & schema
 
-Any `*.sql` files in `db/init/` **only** run automatically **the first time** the DB starts (when `db_data` volume is empty). If you need to re-run them, use:
+Any `*.sql` files in `db/init/` **only** run automatically **the first time** the DB starts (when `db_data` volume is empty). If you need to re-run them or made chances to the .env, use:
 
 ```bash
 docker compose down -v && docker compose up -d
