@@ -8,7 +8,7 @@ A quick local database for the 3rd semester project
    cp .env.example .env
    ```
 3. (Optional) Edit `.env` to change DB name, user, password, and ports.
-4. (Optional) Install Make using [Chocolatey](https://chocolatey.org/install#install-step2):
+4. (Optional) Install Make using [Chocolatey](https://chocolatey.org/install#install-step2) in a terminal with elevated permissions:
    ```bash
    choco install make
    ```
