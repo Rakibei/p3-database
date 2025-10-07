@@ -1,3 +1,8 @@
+ifneq (,$(wildcard ./.env))
+    include .env
+    export
+endif
+
 up:
 	docker compose up -d
 
@@ -11,8 +16,8 @@ down:
 
 
 psql:
-	docker compose exec -e PGPASSWORD=$$POSTGRES_PASSWORD db \
-		psql -U $$POSTGRES_USER -d $$POSTGRES_DB
+	docker compose exec -e PGPASSWORD=$(POSTGRES_PASSWORD) db \
+		psql -U $(POSTGRES_USER) -d $(POSTGRES_DB)
 
 
 shell:
@@ -27,12 +32,11 @@ reset:
 
 # Dump the current DB to a file (./db/init/99_dump.sql)
 dump:
-	docker compose exec -e PGPASSWORD=$$POSTGRES_PASSWORD db \
-		pg_dump -U $$POSTGRES_USER -d $$POSTGRES_DB -F p > db/init/99_dump.sql
+	docker compose exec db pg_dump -U $(POSTGRES_USER) $(POSTGRES_DB) > ./db/init/99_dump.sql
 
 
 # Restore from a dump file
 restore:
 	# Usage: make restore FILE=./db/init/99_dump.sql
-	cat $(FILE) | docker compose exec -T -e PGPASSWORD=$$POSTGRES_PASSWORD db \
-		psql -U $$POSTGRES_USER -d $$POSTGRES_DB
+	cat $(FILE) | docker compose exec -T -e PGPASSWORD=$(POSTGRES_PASSWORD) db \
+		psql -U $(POSTGRES_USER) -d $(POSTGRES_DB)
