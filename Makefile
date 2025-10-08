@@ -36,7 +36,7 @@ dump:
 
 
 # Restore from a dump file
+# Usage: make restore FILE=./db/init/99_dump.sql
 restore:
-	# Usage: make restore FILE=./db/init/99_dump.sql
-	cat $(FILE) | docker compose exec -T -e PGPASSWORD=$(POSTGRES_PASSWORD) db \
-		psql -U $(POSTGRES_USER) -d $(POSTGRES_DB)
+	docker compose exec -T db psql -U $(POSTGRES_USER) -d $(POSTGRES_DB) < $(FILE)
+
